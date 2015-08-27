@@ -6,7 +6,7 @@ touch ~/grokit/disk
 ./dp -be QUAN <<EOF
 0
 1
-/grokit/disk
+1
 EOF
 
 exit 0
