@@ -37,3 +37,6 @@ RUN cd ~/grokit/src \
 ## Set up disk striping
 COPY setup_disk.sh /root/setup_disk.sh
 RUN  cd /root && bash setup_disk.sh
+
+## Install grokit executable globally
+RUN cd /root/grokit/src && PREFIX=/usr make install
