@@ -43,8 +43,13 @@ RUN  cd /root && bash setup_disk.sh
 RUN cd /root/grokit/src && PREFIX=/usr make install
 
 ## Install R tools
-COPY installDeps.R ~
+COPY installDeps.R /root/installDeps.R
+COPY buildJSON.R /root/buildJSON.R
+
 RUN cd ~ \
-	&& Rscript installDeps.R
-	&& git clone https://github.com/tera-insights/gtBase.git
-	&& R CMD INSTALL ~/gtBase
+	&& Rscript installDeps.R \
+	&& Rscript buildJSON.R \ 
+	&& git clone https://github.com/tera-insights/gtBase.git \ 
+	&& cd gtBase && git checkout add-offline-support \
+	&& cd ..
+	##&& R CMD INSTALL gtBase
