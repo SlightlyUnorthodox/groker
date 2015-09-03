@@ -15,7 +15,8 @@ RUN echo "Installing depdendencies" \
 		coin-or-lemon coin-or-lemon-devel \ 
 		oniguruma oniguruma-devel \
 		boost boost-devel boost-system \
-		astyle
+		astyle \
+		R
 
 ## Enable PHP short tags. They are frequently used in the Grokit source.
 RUN sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php.ini
@@ -40,3 +41,10 @@ RUN  cd /root && bash setup_disk.sh
 
 ## Install grokit executable globally
 RUN cd /root/grokit/src && PREFIX=/usr make install
+
+## Install R tools
+COPY installDeps.R ~
+RUN cd ~ \
+	&& Rscript installDeps.R
+	&& git clone https://github.com/tera-insights/gtBase.git
+	&& R CMD INSTALL ~/gtBase
