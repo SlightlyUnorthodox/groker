@@ -55,5 +55,5 @@ RUN cd ~ \
 	&& Rscript buildJSON.R \ 
 	&& git clone https://github.com/tera-insights/gtBase.git \ 
 	&& cd gtBase && git checkout add-offline-support \
-	&& cd ..
+	&& cd .. \
 	&& mode=offline R CMD INSTALL gtBase
