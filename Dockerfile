@@ -42,14 +42,18 @@ RUN  cd /root && bash setup_disk.sh
 ## Install grokit executable globally
 RUN cd /root/grokit/src && PREFIX=/usr make install
 
+## Install base grokit library
+RUN grokit makelib /root/grokit/Libs/base
+
 ## Install R tools
 COPY installDeps.R /root/installDeps.R
 COPY buildJSON.R /root/buildJSON.R
 
+## Install base R library
 RUN cd ~ \
 	&& Rscript installDeps.R \
 	&& Rscript buildJSON.R \ 
 	&& git clone https://github.com/tera-insights/gtBase.git \ 
 	&& cd gtBase && git checkout add-offline-support \
 	&& cd ..
-	##&& R CMD INSTALL gtBase
+	&& mode=offline R CMD INSTALL gtBase
