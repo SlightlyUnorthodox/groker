@@ -16,7 +16,8 @@ RUN echo "Installing depdendencies" \
 		oniguruma oniguruma-devel \
 		boost boost-devel boost-system \
 		astyle \
-		R
+		R \
+		armadillo-devel
 
 ## Enable PHP short tags. They are frequently used in the Grokit source.
 RUN sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php.ini
@@ -44,6 +45,11 @@ RUN cd /root/grokit/src && PREFIX=/usr make install
 
 ## Install base grokit library
 RUN grokit makelib /root/grokit/Libs/base
+
+## Install R statistics library
+RUN cd ~ \
+	&& git clone https://github.com/tera-insights/statistics.git \
+	&& grokit makelib statistics
 
 ## Install R tools
 COPY installDeps.R /root/installDeps.R
