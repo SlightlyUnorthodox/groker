@@ -23,4 +23,4 @@ Once you are in, you can run R scripts in the Grokit environment in the followin
 mode=offline Rscript sampleQuery.R
 ```
 
-`mode=offline` is important because it allows Grokit to run without trying to get relations from a server.
+`mode=offline` is important because it allows Grokit to run without accessing a server.
