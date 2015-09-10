@@ -2,9 +2,8 @@ FROM fedora:latest
 
 MAINTAINER "Jess Smith" jess@terainsights.com
 
-## Install dependencies
-RUN echo "Installing depdendencies" \ 
-	&& dnf -y -v groupinstall "C Development Tools and Libraries" \
+## Install dependencies and useful tools.
+RUN dnf -y -v groupinstall "C Development Tools and Libraries" \
 	&& dnf -y -v install bc wget clang git java \
 		php-cli php-pdo php-pecl-xdebug \
 		jsoncpp jsoncpp-devel \
@@ -17,7 +16,8 @@ RUN echo "Installing depdendencies" \
 		boost boost-devel boost-system \
 		astyle \
 		R \
-		armadillo-devel
+		armadillo-devel \
+		emacs htop
 
 ## Enable PHP short tags. They are frequently used in the Grokit source.
 RUN sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php.ini
