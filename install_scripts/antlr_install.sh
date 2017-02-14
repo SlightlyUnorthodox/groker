@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Download and install ANTLR Parser Generator
 mkdir -p ~/antlr
 cd ~/antlr
 
