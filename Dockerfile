@@ -14,7 +14,10 @@ RUN yum install -y epel-release \
     bison \
     flex \
     glibc.i686 \
-    glibc.devel.i686
+    glibc.devel.i686 \
+    bzr \
+    gperftools-libs.x86_64 \
+    gperftools-devel.x86_64
 
 ## WARNING! 'dnf' install fails unless built on its own 'RUN'
 RUN yum -y install dnf
