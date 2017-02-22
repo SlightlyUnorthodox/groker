@@ -89,3 +89,10 @@ RUN cd ~ \
 	&& cd gtBase && git checkout add-offline-support \
 	&& cd .. \
 	&& mode=offline R CMD INSTALL gtBase
+
+## Copy build tests
+RUN mkdir /root/test
+COPY test/GroupByTest.R /root/test/GroupByTest.R
+
+## Run GroupByTest
+RUN printf '0\n1\n1' | mode=offline Rscript /root/test/GroupByTest.R
